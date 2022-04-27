@@ -4,23 +4,23 @@
 #include <string>
 template<typename T>
 class TPQueue {
-private:
+ private:
   struct ITEM {
     T value;
     ITEM* next, * prev;
 };
   ITEM* start, * fin;
-  TPQueue::ITEM* create(const T& value) {
+  TPQueue::ITEM* create(const T& ) {
     ITEM* item = new ITEM;
     item->value = value;
     item->next = item->prev = nullptr;
     return item;
 }
 
-public:
+ public:
   TPQueue() : start(nullptr), fin(nullptr) {}
   void push(const T& value);
-  T pop();   
+  T pop();
 };
 template<typename T>
 void TPQueue<T>:: push(const T& value) {
@@ -30,7 +30,7 @@ void TPQueue<T>:: push(const T& value) {
     temp = temp->next;
     if (!temp && start) {
       fin->next = item;
-      item->prev = fin;  
+      item->prev = fin;
       fin = item;
     } else if (!temp && !start) {
       start = fin = item;
