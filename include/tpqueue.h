@@ -8,9 +8,9 @@ class TPQueue {
   struct ITEM {
     T value;
     ITEM* next, * prev;
-};
+  };
   ITEM* start, * fin;
-  TPQueue::ITEM* create(const T& ) {
+  TPQueue::ITEM* create(const T& value) {
     ITEM* item = new ITEM;
     item->value = value;
     item->next = item->prev = nullptr;
