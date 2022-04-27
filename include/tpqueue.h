@@ -23,6 +23,24 @@ class TPQueue {
   T pop();
 };
 template<typename T>
+T TPQueue<T>:: pop() {
+  if (start && fin) {
+    ITEM* temp = start->next;
+    if (temp) {
+      temp->prev = nullptr;
+    }
+    T value = start->value;
+    delete start;
+    start = temp;
+    if (!start) {
+      fin = nullptr;
+    }
+  return value;
+  } else {
+    throw std::string("The queue is empty");
+  }
+}
+template<typename T>
 void TPQueue<T>:: push(const T& value) {
   ITEM* temp = start;
   ITEM* item = create(value);
@@ -45,24 +63,7 @@ void TPQueue<T>:: push(const T& value) {
       temp->prev = item;
     }
 }
-template<typename T>
-T TPQueue<T>:: pop() {
-  if (start && fin) {
-    ITEM* temp = start->next;
-    if (temp) {
-      temp->prev = nullptr;
-    }
-    T value = start->value;
-    delete start;
-    start = temp;
-    if (!start) {
-      fin = nullptr;
-    }
-  return value;
-  } else {
-    throw std::string("The queue is empty");
-  }
-}
+
 struct SYM {
   char ch;
   int prior;
